@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@200;400&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background-image: url("{{ url_for('static', filename='images/GettyImages-185331541.webp') }}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Josefin Sans', sans-serif;
+            color: white;
+        }
+
+        .about-container {
+            background-color: rgba(0, 0, 0, 0.6);
+            border-radius: 10px;
+            padding: 20px;
+            max-width: 800px;
+            margin: 50px auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+        }
+
+        .about-container h2, .about-container h3 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .about-container p, .about-container ul {
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .about-container ul {
+            list-style: disc;
+            padding-left: 20px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            color: white;
+            font-size: 0.9rem;
+        }
+
+        @media only screen and (max-width: 768px) {
+            .about-container {
+                width: 90%;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+
+<header>
+    <div class="row">
+        <div class="navigbar">
+            <div class="bristol-logo">
+                <img src="{{ url_for('static', filename='images/horizon-logo-finalV2.png') }}" alt="Logo" width="110" height="30">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('home') }}">Home</a></li>
+                    <li><a href="{{ url_for('signup') }}">Sign Up</a></li>
+                    <li><a href="{{ url_for('login') }}">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<body>
+    <div class="about-container">
+        <h2>About Our Booking System</h2>
+        <p>Welcome to our flight booking system! Our platform allows customers to book flights, manage their bookings, and enjoy a seamless travel experience. Whether you're traveling for business or leisure, we've got you covered.</p>
+
+        <h3>Key Features</h3>
+        <ul>
+            <li>Book flights with ease</li>
+            <li>Manage your bookings (update or cancel)</li>
+            <li>View your booking details and QR code receipts</li>
+            <li>Admin panel for managing flights, customers, and bookings</li>
+            <li>Discounts for early bookings</li>
+        </ul>
+
+        <h3>Contact Us</h3>
+        <p>If you have any questions or need assistance, feel free to reach out to us:</p>
+        <ul>
+            <li>Email: support@bookingplatform.com</li>
+            <li>Phone: +1-800-123-4567</li>
+        </ul>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Flight Booking System. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>

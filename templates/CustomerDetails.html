@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Details</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+    <link rel="" href="doc.js">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@200;400&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background-image: url("{{ url_for('static', filename='images/GettyImages-185331541.webp') }}");
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Josefin Sans', sans-serif;
+            border-radius: 30px; /* Adjust the radius as needed */
+        }
+
+        .customer-details {
+            background-color: rgba(0, 0, 0, 0.6);
+            border-radius: 10px;
+            color : white;
+            padding: 20px;
+            max-width: 800px;
+            margin: 50px auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);;
+        }
+
+        .customer-details h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .customer-details .detail-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            margin-top: 20px;
+        }
+
+        .customer-details .detail-row p {
+            margin: 0;
+            font-weight: bold;
+        }
+
+        @media only screen and (max-width: 768px) {
+            .customer-details {
+                width: 90%;
+                padding: 10px;
+            }
+        }
+        
+        .alert {
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        font-weight: bold;
+    }
+    .alert-success {
+        background-color: #d4edda;
+        color: #155724;
+    }
+    .alert-danger {
+        background-color: #f8d7da;
+        color: #721c24;
+    }
+        
+    </style>
+
+</head>
+
+<header>
+    <div class="row">
+        <div class="navigbar">
+            <div class="bristol-logo">
+                <img src="{{ url_for('static', filename='images/horizon-logo-finalV2.png') }}" alt="bristol" width="110" height="30">
+            </div>   
+            <div class="naviga">
+                <h10> </h10>
+            </div>
+               <nav>
+                <ul>
+                <li><a href="{{ url_for('logout') }}"> <h10>Logout</h10>  </a></li>
+                </ul>
+               </nav>
+           </div> 
+        </div>     
+</header>
+
+<body>
+    <div class="tiny-contaner1">
+        <div class="row">
+            <div class="collumn-6">
+                <a href="{{ url_for('CustomerInfo') }}">
+                <h6>My details</h6>
+                </a>
+               </div>
+           <div class="collumn-6">
+            <a href="{{ url_for('booking') }}">
+            <h6>Add Booking</h6>
+            </a>
+           </div> 
+           <div class="collumn-6">
+            <a href="{{ url_for('update_password') }}">
+            <h6>Update Password</h6>
+            </a>
+           </div>
+           
+          </div>
+        </div>
+
+    <div class="customer-details">
+        <h2 style="text-align: center; font-size: 2rem; font-weight: bold;">Customer Details</h2>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div>
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+        <div class="detail-row">
+            <p>Customer ID:</p>
+            <p>{{ customer.CustomerID }}</p>
+        </div>
+        <div class="detail-row">
+            <p>Name:</p>
+            <p>{{ customer.name }}</p>
+        </div>
+        <div class="detail-row">
+            <p>Email:</p>
+            <p>{{ customer.email }}</p>
+        </div>
+
+        <h3 style="text-align: center; font-size: 2rem; font-weight: bold;">Your Bookings</h3>
+        {% if bookings %}
+    {% for booking in bookings %}
+    <div class="detail-row">
+        <p>Booking ID:</p>
+        <p>{{ booking[0] }}</p>
+    </div>
+    <div class="detail-row">
+        <p>Route:</p>
+        <p>{{ booking[1] }}</p>
+    </div>
+    <div class="detail-row">
+        <p>Destination:</p>
+        <p>{{ booking[2] }}</p>
+    </div>
+    <div class="detail-row">
+        <p>Seats:</p>
+        <p>{{ booking[3] }}</p>
+    </div>
+    <div class="detail-row">
+        <p>Status:</p>
+        <p>{{ booking[4] }}</p>
+    </div>
+    <div class="detail-row">
+        <p>Departure Date:</p>
+        <p>{{ booking[5] }}</p>
+    </div>
+    <div class="detail-row">
+        <p>Price per Seat:</p>
+        <p>£{{ booking[6] }}</p>
+    </div>
+    <div class="detail-row">
+        <p>Total Price:</p>
+        <p>£{{ booking[7] }}</p>
+    </div>
+    <div class="detail-row">
+        <p>Total Price (After Discount):</p>
+        <p>£{{ booking[8] }}</p> <!-- Assuming the discounted total is passed as the 9th element -->
+    </div>
+    <div class="detail-row">
+        <p>Discount:</p>
+        <p>{{ booking[9] }}%</p> <!-- Value from the DiscountPercentage column -->
+    </div>
+        <div class="detail-row" style="display: flex; gap: 10px; margin-top: 10px;">
+            <form action="{{ url_for('cancel_booking') }}" method="POST">
+                <input type="hidden" name="booking_id" value="{{ booking[0] }}">
+                <button type="submit" style="background-color: red; color: white; border: none; padding: 10px; border-radius: 5px; cursor: pointer;">
+                    Cancel
+                </button>
+            </form>
+            <form action="{{ url_for('view_qr_code', booking_id=booking[0]) }}" method="GET">
+                <button type="submit" style="background-color: blue; color: white; border: none; padding: 10px; border-radius: 5px; cursor: pointer;">
+                    Reiceipt
+                </button>
+            </form>
+            <form action="{{ url_for('update_booking', booking_id=booking[0]) }}" method="GET">
+                <button type="submit" style="background-color: orange; color: white; border: none; padding: 10px; border-radius: 5px; cursor: pointer;">
+                    Amend
+                </button>
+            </form>
+        </div>
+        <hr style="border: 1px solid white; margin-top: 10px; margin-bottom: 20px;"> <!-- Separator between bookings -->
+    {% endfor %}
+{% else %}
+    <p>You have no Bookings yet.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
+

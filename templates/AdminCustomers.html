@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Manage Customers</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@200;400&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background-image: url("{{ url_for('static', filename='images/GettyImages-185331541.webp') }}");
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Josefin Sans', sans-serif;
+            color: white;
+        }
+
+        .admin-customers {
+            background-color: rgba(0, 0, 0, 0.6);
+            border-radius: 10px;
+            padding: 20px;
+            max-width: 800px;
+            margin: 50px auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+        }
+
+        .admin-customers h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .admin-customers table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        .admin-customers table th,
+        .admin-customers table td {
+            border: 1px solid white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .admin-customers table th {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .admin-customers table td {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .admin-customers form {
+            margin-top: 20px;
+        }
+
+        .admin-customers .form-group {
+            margin-bottom: 15px;
+        }
+
+        .admin-customers .form-group input,
+        .admin-customers .form-group button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .admin-customers .form-group button {
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            cursor: pointer;
+        }
+
+        .admin-customers .form-group button:hover {
+            background-color: black;
+        }
+    </style>
+</head>
+
+
+<header>
+    <div class="row">
+        <div class="navigbar">
+            <div class="bristol-logo">
+                <img src="{{ url_for('static', filename='images/horizon-logo-finalV2.png') }}" alt="bristol" width="110" height="30">
+            </div>   
+            <div class="naviga">
+                <h10>Admin Panel</h10>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('routes_ht') }}"> <h10> </h10>  </a></li>
+                    <li><a href="{{ url_for('logout') }}"> <h10>Logout</h10> </a></li>
+                </ul>
+            </nav>
+        </div> 
+    </div>     
+</header>
+
+<body>
+    <div class="tiny-contaner1">
+        <div class="row">
+           <div class="collumn-6">
+            <a href="{{ url_for('admin_flights') }}">
+            <h6>Manage Flights</h6>
+            </a>
+           </div>
+           <div class="collumn-6">
+            <a href="{{ url_for('admin_bookings') }}">
+            <h6>Manage Bookings</h6>
+            </a>
+           </div>
+           <div class="collumn-6">
+            <a href="{{ url_for('admin_customers') }}">
+            <h6>Manage Customers</h6>  
+            </a>
+           </div>
+           <div class="collumn-6">
+            <a href="{{ url_for('monthly_sales') }}">
+            <h6>Monthly Sales</h6>  
+            </a>
+           </div>
+           <div class="collumn-6">
+            <a href="{{ url_for('sales_per_journey') }}">
+            <h6>Sales Per Journey</h6>  
+            </a>
+           </div>
+           <div class="collumn-6">
+            <a href="{{ url_for('top_customers') }}">
+            <h6>Top Customers</h6>  
+            </a>
+           </div>
+           <div class="collumn-6">
+            <a href="{{ url_for('profitable_routes') }}">
+            <h6>Profitable Routes</h6>  
+            </a>
+           </div>
+           <div class="collumn-6">
+            <a href="{{ url_for('routes_in_loss') }}">
+            <h6>Route is loss</h6>  
+            </a>
+           </div>
+           <div class="collumn-6">
+            <a href="{{ url_for('booking') }}">
+            <h6>Exit</h6>
+            </a>
+           </div> 
+          </div>
+        </div>
+
+    <div class="admin-customers">
+        <h2>Customers</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Customer ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for customer in customers %}
+                <tr>
+                    <td>{{ customer[0] }}</td>
+                    <td>{{ customer[1] }}</td>
+                    <td>{{ customer[2] }}</td>
+                    <td>
+                        <!-- Edit Customer Form -->
+                        <form action="{{ url_for('admin_customers') }}" method="POST" style="display: inline;">
+                            <input type="hidden" name="action" value="edit">
+                            <input type="hidden" name="customer_id" value="{{ customer[0] }}">
+                            <input type="text" name="name" placeholder="New Name" required>
+                            <input type="email" name="email" placeholder="New Email" required>
+                            <button type="submit">Edit</button>
+                        </form>
+
+                        <!-- Delete Customer Form -->
+                        <form action="{{ url_for('admin_customers') }}" method="POST" style="display: inline;">
+                            <input type="hidden" name="action" value="delete">
+                            <input type="hidden" name="customer_id" value="{{ customer[0] }}">
+                            <button type="submit" style="background-color: red;">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Add New Customer Form -->
+        <h3>Add New Customer</h3>
+        <form action="{{ url_for('admin_customers') }}" method="POST">
+            <input type="hidden" name="action" value="add">
+            <div class="form-group">
+                <input type="text" name="name" placeholder="Name" required>
+            </div>
+            <div class="form-group">
+                <input type="email" name="email" placeholder="Email" required>
+            </div>
+            <div class="form-group">
+                <input type="password" name="password" placeholder="Password" required>
+            </div>
+            <div class="form-group">
+                <button type="submit">Add Customer</button>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

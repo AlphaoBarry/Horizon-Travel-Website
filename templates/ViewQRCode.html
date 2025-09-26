@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@200;400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-image: url("{{ url_for('static', filename='images/GettyImages-185331541.webp') }}");
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Josefin Sans', sans-serif;
+            color: white;
+        }
+
+        .qr-container {
+            background-color: rgba(0, 0, 0, 0.6);
+            border-radius: 10px;
+            padding: 20px;
+            max-width: 600px;
+            margin: 50px auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+            text-align: center;
+        }
+
+        .qr-container img {
+            max-width: 300px;
+            height: auto;
+            margin-top: 20px;
+        }
+
+        .button-container {
+            margin-top: 40px; /* Moves the button further down */
+        }
+
+        .back-button {
+            padding: 10px 20px;
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .back-button:hover {
+            background-color: black;
+        }
+
+        .header-logo {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .header-logo img {
+            width: 110px;
+            height: 30px;
+        }
+    </style>
+</head>
+
+<header>
+    <div class="row">
+        <div class="navigbar">
+            <div class="bristol-logo">
+                <img src="{{ url_for('static', filename='images/horizon-logo-finalV2.png') }}" alt="bristol" width="110" height="30">
+            </div>   
+            <div class="naviga">
+                <h10> </h10>
+            </div>
+               <nav>
+                <ul>
+                <li><a href="{{ url_for('logout') }}"> <h10>Logout</h10>  </a></li>
+                </ul>
+               </nav>
+           </div> 
+        </div>     
+</header>
+
+<body>
+    <div class="qr-container">
+        <h2>Your QR Code</h2>
+        <img src="{{ qr_image_path }}" alt="QR Code">
+        <div class="button-container">
+            <!-- Back to Bookings button moved further down -->
+            <a href="{{ url_for('CustomerInfo') }}" class="back-button">Back to Bookings</a>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Routes</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@200;400&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background-image: url("{{ url_for('static', filename='images/GettyImages-185331541.webp') }}");
+            background-size: cover;
+            background-position: center;
+            
+            height: 100vh;
+            margin: 0;
+            font-family: 'Josefin Sans', sans-serif;
+            border-radius: 30px;
+        }
+
+        .routes-details {
+            background-color: rgba(0, 0, 0, 0.6);
+            border-radius: 10px;
+            color: white;
+            padding: 20px; /* Further reduced padding */
+            max-width: 800px;
+            margin: 5px auto;
+            margin-top: 20px; /* Further reduced margin */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+        }
+
+        .routes-details h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .routes-details table {
+            width: 90%; /* Keep table width */
+            border-collapse: collapse;
+            margin: 10px auto; /* Reduced margin */
+        }
+
+        .routes-details th, .routes-details td {
+            border: 1px solid white;
+            padding: 5px; /* Reduced padding */
+            text-align: center;
+        }
+
+        .routes-details th {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .routes-details a {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .routes-details a:hover {
+            text-decoration: underline;
+        }
+
+        @media only screen and (max-width: 768px) {
+            .routes-details {
+                width: 90%;
+                padding: 10px;
+            }
+
+            .routes-details table {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+
+    <header>
+        <div class="row">
+        <div class="navigbar">
+            <div class="bristol-logo">
+                <img src="{{ url_for('static', filename='images/horizon-logo-finalV2.png') }}" alt="bristol" width="110" height="30">
+            </div>   
+            <div class="naviga">
+                <h10> </h10>
+            </div> 
+               <nav>
+                <ul>
+                <li><a href="{{ url_for('about') }}"> <h10>About   </h10>  </a></li>
+                </ul>
+               </nav>
+           </div> 
+        </div>
+    </header>
+
+    <div class="tiny-contaner1">
+        <div class="row">
+           <div class="collumn-6">
+            <a href="{{ url_for('signup') }}">
+            <h6>SIGN IN</h6>
+            </a>
+           </div>
+           <div class="collumn-6">
+            <a href="{{ url_for('login') }}">
+            <h6>LOGIN</h6>  
+            </a>
+           </div>
+          </div>
+        </div>
+
+    <div class="routes-details">
+        <h1>Available Routes</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Route ID</th>
+                    <th>Route</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for route in routes %}
+                <tr>
+                    <td>{{ route[0] }}</td>
+                    <td>{{ route[1] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{{ url_for('home') }}">Back to Home</a>
+    </div>
+</body>
+</html>

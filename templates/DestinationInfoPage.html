@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+    <link rel="" href="doc.js">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@200;400&display=swap" rel="stylesheet">
+
+    
+    <style>
+        body {
+            background-image: url("{{ url_for('static', filename='images/GettyImages-185331541.webp') }}");
+            background-size: cover;
+            background-position: center;
+            
+            height: 100vh;
+            margin: 0;
+            font-family: 'Josefin Sans', sans-serif;
+            border-radius: 30px; /* Adjust the radius as needed */
+        }
+
+        @media only screen and (max-width: 768px){
+            • {width : 100%;}
+            •col-2 {width : 100%;}
+            •col-3 {width : 100%;}
+        }
+    </style>
+
+</head>
+
+<header>
+    <div class="row">
+        <div class="navigbar">
+            <div class="bristol-logo">
+                <img src="{{ url_for('static', filename='images/horizon-logo-finalV2.png') }}" alt="bristol" width="110" height="30">
+            </div>   
+            <div class="naviga">
+                <h10> </h10>
+            </div>
+               <nav>
+                <ul>
+                <li><a href="{{ url_for('home') }}"> <h10>Home</h10>  </a></li>
+                </ul>
+               </nav>
+           </div> 
+        </div>     
+</header>
+
+
+
+</script>
+
+<body>
+
+    <div class="tiny-contaner1">
+        <div class="row">
+           <div class="collumn-6">
+            <a href="{{ url_for('signup') }}">
+            <h6>SIGN IN</h6>
+            </a>
+           </div>
+           <div class="collumn-6">
+            <a href="{{ url_for('login') }}">
+            <h6>LOGIN</h6>  
+            </a>
+           </div>
+          </div>
+        </div>
+    
+     
+    
+            <div class="small-contaner-1">
+                <div class="row">
+                    <div class="collumn-3">
+                        <a href="infoprizm.html">
+                            <img src="{{ url_for('static', filename='images/Clifton-Suspension-Bridge-in-Bristol-England.jpg') }}" alt="" height="200" width="350">
+                            <h3>Bristol</h3>
+                            <p></p>
+                        </a>
+                    </div>
+                    <div class="collumn-3">
+                        <a href="antix.html">
+                          <img src="{{ url_for('static', filename='images/london-bridge-non-editorial.jpeg') }}" alt=""height="200" width="350"  >
+                          <h3>London</h3>
+                          <p></p>
+                        </a>
+                    </div>
+                    <div class="collumn-3">
+                        <a href="basement.html">
+                           <img src="{{ url_for('static', filename='images/Deansgate_Square_&_Elizabeth_Tower_Manchester_Winter_2020.jpg') }}" alt="" height="200" width="350" >
+                           <h3>Manshester</h3>
+                           <p></p>
+                        </a>
+                    </div>
+                    <div class="collumn-3">
+                        <a href="98afrobeat.html">
+                           <img src="{{ url_for('static', filename='images/imageresizer.jpeg') }}" alt="" height="200" width="350" >
+                           <h3>Bath</h3>
+                           <p></p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+       
+
+            <div class="small-contaner-1">
+                <div class="row">
+                    <div class="collumn-3">
+                        <a href="infoprizm.html">
+                            <img src="{{ url_for('static', filename='images/tom-podmore-IpCcVWWQqTI-unsplash.jpg') }}" alt="" height="200" width="350">
+                            <h3>weston super mare</h3>
+                            <p></p>
+                        </a>
+                    </div>
+                    <div class="collumn-3">
+                        <a href="antix.html">
+                          <img src="{{ url_for('static', filename='images/-methode-times-prod-web-bin-7ce48514-9246-4f59-a605-667fe4c5b143.jpg') }}" alt=""height="200" width="350"  >
+                          <h3>cardif</h3>
+                          <p></p>
+                        </a>
+                    </div>
+                    <div class="collumn-3">
+                        <a href="basement.html">
+                           <img src="{{ url_for('static', filename='images/travelling-back-in-time.jpg') }}" alt="" height="200" width="350" >
+                           <h3>wells</h3>
+                           <p></p>
+                        </a>
+                    </div>
+                    <div class="collumn-3">
+                        <a href="98afrobeat.html">
+                           <img src="{{ url_for('static', filename='images/cornwall-town-guide-the-best-5-towns-in-cornwall_1.jpg') }}" alt="" height="200" width="350" >
+                           <h3>corwal</h3>
+                           <p></p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+    
+        
+            
+
+    
+</body>
+</html> 
+

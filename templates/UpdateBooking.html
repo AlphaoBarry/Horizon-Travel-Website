@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Booking</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@200;400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-image: url("{{ url_for('static', filename='images/GettyImages-185331541.webp') }}");
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Josefin Sans', sans-serif;
+            color: white;
+        }
+
+        .update-form {
+            background-color: rgba(0, 0, 0, 0.6);
+            border-radius: 10px;
+            padding: 20px;
+            max-width: 600px;
+            margin: 50px auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+        }
+
+        .update-form h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+
+        .update-form .form-group {
+            margin-bottom: 15px;
+        }
+
+        .update-form .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .update-form .form-group input,
+        .update-form .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .update-form .form-group button {
+            width: 100%;
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .update-form .form-group button:hover {
+            background-color: black;
+        }
+
+        @media only screen and (max-width: 768px) {
+            .update-form {
+                width: 90%;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+
+<header>
+    <div class="row">
+        <div class="navigbar">
+            <div class="bristol-logo">
+                <img src="{{ url_for('static', filename='images/horizon-logo-finalV2.png') }}" alt="bristol" width="110" height="30">
+            </div>   
+            <div class="naviga">
+                <h10> </h10>
+            </div>
+               <nav>
+                <ul>
+                <li><a href="{{ url_for('logout') }}"> <h10>Logout</h10>  </a></li>
+                </ul>
+               </nav>
+           </div> 
+        </div>     
+</header>
+
+
+<body>
+    <div class="tiny-contaner1">
+        <div class="row">
+            <div class="collumn-6">
+                <a href="{{ url_for('logout') }}">
+                <h6>Home</h6>
+                </a>
+               </div> 
+           <div class="collumn-6">
+            <a href="{{ url_for('booking') }}">
+            <h6>Add Booking</h6>
+            </a>
+           </div> 
+           <div class="collumn-6">
+            <a href="{{ url_for('update_password') }}">
+            <h6>Update Password</h6>
+            </a>
+           </div>
+          </div>
+        </div>
+        
+    <div class="update-form">
+        <h2>Update Your Booking</h2>
+        <form action="{{ url_for('update_booking', booking_id=booking_id) }}" method="POST">
+            <div class="form-group">
+                <label for="departure_date">Departure Date</label>
+                <input type="date" id="departure_date" name="departure_date" value="{{ booking[0] }}" required>
+            </div>
+            <div class="form-group">
+                <label for="num_seats">Number of Seats</label>
+                <input type="number" id="num_seats" name="num_seats" value="{{ booking[1] }}" min="1" max="100" required>
+            </div>
+            <div class="form-group">
+                <label for="class_type">Class</label>
+                <select id="class_type" name="class_type" required>
+                    <option value="Business" {% if booking[2] == 'Business' %}selected{% endif %}>Business</option>
+                    <option value="Economy" {% if booking[2] == 'Economy' %}selected{% endif %}>Economy</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <button type="submit">Update</button>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

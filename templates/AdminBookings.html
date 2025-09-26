@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Manage Bookings</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@200;400&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background-image: url("{{ url_for('static', filename='images/GettyImages-185331541.webp') }}");
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Josefin Sans', sans-serif;
+            color: white;
+        }
+
+        .admin-bookings {
+            background-color: rgba(0, 0, 0, 0.6);
+            border-radius: 10px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 50px auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+        }
+
+        .admin-bookings h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .admin-bookings table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        .admin-bookings table th,
+        .admin-bookings table td {
+            border: 1px solid white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .admin-bookings table th {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .admin-bookings table td {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .admin-bookings form {
+            margin-top: 20px;
+        }
+
+        .admin-bookings .form-group {
+            margin-bottom: 15px;
+        }
+
+        .admin-bookings .form-group input,
+        .admin-bookings .form-group button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .admin-bookings .form-group button {
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            cursor: pointer;
+        }
+
+        .admin-bookings .form-group button:hover {
+            background-color: black;
+        }
+    </style>
+</head>
+
+<header>
+    <div class="row">
+        <div class="navigbar">
+            <div class="bristol-logo">
+                <img src="{{ url_for('static', filename='images/horizon-logo-finalV2.png') }}" alt="bristol" width="110" height="30">
+            </div>   
+            <div class="naviga">
+                <h10>Admin Panel</h10>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('logout') }}"> <h10>Logout</h10> </a></li>
+                </ul>
+            </nav>
+        </div> 
+    </div>     
+</header>
+
+<body>
+    <div class="tiny-contaner1">
+        <div class="row">
+           <div class="collumn-6">
+            <a href="{{ url_for('admin_flights') }}">
+            <h6>Manage Flights</h6>
+            </a>
+           </div>
+           <div class="collumn-6">
+            <a href="{{ url_for('admin_bookings') }}">
+            <h6>Manage Bookings</h6>
+            </a>
+           </div>
+           <div class="collumn-6">
+            <a href="{{ url_for('admin_customers') }}">
+            <h6>Manage Customers</h6>  
+            </a>
+           </div>
+           <div class="collumn-6">
+            <a href="{{ url_for('monthly_sales') }}">
+            <h6>Monthly Sales</h6>  
+            </a>
+           </div>
+           <div class="collumn-6">
+            <a href="{{ url_for('sales_per_journey') }}">
+            <h6>Sales Per Journey</h6>  
+            </a>
+           </div>
+           <div class="collumn-6">
+            <a href="{{ url_for('top_customers') }}">
+            <h6>Top Customers</h6>  
+            </a>
+           </div>
+           <div class="collumn-6">
+            <a href="{{ url_for('profitable_routes') }}">
+            <h6>Profitable Routes</h6>  
+            </a>
+           </div>
+           <div class="collumn-6">
+            <a href="{{ url_for('routes_in_loss') }}">
+            <h6>Route is loss</h6>  
+            </a>
+           </div>
+           <div class="collumn-6">
+            <a href="{{ url_for('booking') }}">
+            <h6>Exit</h6>
+            </a>
+           </div> 
+          </div>
+        </div>
+
+    <div class="admin-bookings">
+        <h2>Bookings</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Booking ID</th>
+                    <th>Customer Name</th>
+                    <th>Email</th>
+                    <th>Route ID</th>
+                    <th>Seats</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                    <th>Total Price</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for booking in bookings %}
+                <tr>
+                    <td>{{ booking[0] }}</td>
+                    <td>{{ booking[1] }}</td>
+                    <td>{{ booking[2] }}</td>
+                    <td>{{ booking[3] }}</td>
+                    <td>{{ booking[4] }}</td>
+                    <td>{{ booking[5] }}</td>
+                    <td>{{ booking[6] }}</td>
+                    <td>£{{ booking[7] }}</td>
+                    <td>
+                        <!-- Edit Booking Form -->
+                        <form action="{{ url_for('admin_bookings') }}" method="POST" style="display: inline;">
+                            <input type="hidden" name="action" value="edit">
+                            <input type="hidden" name="booking_id" value="{{ booking[0] }}">
+                            <input type="date" name="date" placeholder="New Date" required>
+                            <input type="number" name="seats" placeholder="New Seats" required>
+                            <select name="status" required>
+                                <option value="Business" {% if booking[5] == 'Business' %}selected{% endif %}>Business</option>
+                                <option value="Economy" {% if booking[5] == 'Economy' %}selected{% endif %}>Economy</option>
+                            </select>
+                            <button type="submit">Edit</button>
+                        </form>
+
+                        <!-- Delete Booking Form -->
+                        <form action="{{ url_for('admin_bookings') }}" method="POST" style="display: inline;">
+                            <input type="hidden" name="action" value="delete">
+                            <input type="hidden" name="booking_id" value="{{ booking[0] }}">
+                            <button type="submit" style="background-color: red;">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

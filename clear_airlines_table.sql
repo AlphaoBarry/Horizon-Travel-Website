@@ -1,0 +1,7 @@
+USE alpha2barry;
+
+SET SQL_SAFE_UPDATES = 0;
+
+DELETE FROM Airlines_HT WHERE 1=1;
+
+SET SQL_SAFE_UPDATES = 1;

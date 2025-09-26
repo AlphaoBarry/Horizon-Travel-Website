@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales Per Journey</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@200;400&display=swap" rel="stylesheet">
+
+</head>
+
+<header>
+    <div class="row">
+        <div class="navigbar">
+            <div class="bristol-logo">
+                <img src="{{ url_for('static', filename='images/horizon-logo-finalV2.png') }}" alt="bristol" width="110" height="30">
+            </div>   
+            <div class="naviga">
+                <h10>Sales Per Journey</h10>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('logout') }}"> <h10>Logout</h10> </a></li>
+                </ul>
+            </nav>
+        </div> 
+    </div>     
+</header>
+
+<body>
+    <div class="tiny-contaner1">
+        <div class="row">
+           <div class="collumn-6">
+            <a href="{{ url_for('admin_flights') }}">
+            <h6>Manage Flights</h6>
+            </a>
+           </div>
+           <div class="collumn-6">
+            <a href="{{ url_for('admin_bookings') }}">
+            <h6>Manage Bookings</h6>
+            </a>
+           </div>
+           <div class="collumn-6">
+            <a href="{{ url_for('admin_customers') }}">
+            <h6>Manage Customers</h6>  
+            </a>
+           </div>
+           <div class="collumn-6">
+            <a href="{{ url_for('monthly_sales') }}">
+            <h6>Monthly Sales</h6>  
+            </a>
+           </div>
+           <div class="collumn-6">
+            <a href="{{ url_for('sales_per_journey') }}">
+            <h6>Sales Per Journey</h6>  
+            </a>
+           </div>
+           <div class="collumn-6">
+            <a href="{{ url_for('top_customers') }}">
+            <h6>Top Customers</h6>  
+            </a>
+           </div>
+           <div class="collumn-6">
+            <a href="{{ url_for('profitable_routes') }}">
+            <h6>Profitable Routes</h6>  
+            </a>
+           </div>
+           <div class="collumn-6">
+            <a href="{{ url_for('routes_in_loss') }}">
+            <h6>Route is loss</h6>  
+            </a>
+           </div>
+           <div class="collumn-6">
+            <a href="{{ url_for('booking') }}">
+            <h6>Exit</h6>
+            </a>
+           </div> 
+          </div>
+        </div>
+    <h2> </h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Route ID</th>
+                <th>Total Sales</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in sales_per_journey %}
+            <tr>
+                <td>{{ row[0] }}</td>
+                <td>£{{ row[1] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+<style>
+        body {
+            background-image: url("{{ url_for('static', filename='images/GettyImages-185331541.webp') }}");
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Josefin Sans', sans-serif;
+            color: white;
+        }
+
+        h2 {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+            border-bottom: 1px solid white;
+        }
+
+        th {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        tr:nth-child(even) {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</html>

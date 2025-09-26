@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="description" content="Login Page">
+<meta name="keywords" content="Login, Authentication">
+<title>Login</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@200;400&display=swap" rel="stylesheet">
+
+<style>
+  body {
+      background-image: url("{{ url_for('static', filename='images/GettyImages-185331541.webp') }}");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      height: 100vh;
+      margin: 0;
+      font-family: 'Josefin Sans', sans-serif;
+      border-radius: 30px; /* Adjust the radius as needed */
+  }
+
+  @media only screen and (max-width: 768px){
+      • {width : 100%;}
+      •col-2 {width : 100%;}
+      •col-3 {width : 100%;}
+  }
+
+  .error-message {
+      color: red;
+      font-weight: bold;
+      margin-bottom: 10px;
+  }
+
+  .alert {
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .alert-danger {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+</style>
+
+</head>
+
+<header>
+    <div class="row">
+        <div class="navigbar">
+            <div class="bristol-logo">
+                <img src="{{ url_for('static', filename='images/horizon-logo-finalV2.png') }}" alt="bristol" width="110" height="30">
+            </div>   
+            <div class="naviga">
+                <h10> </h10>
+            </div>
+               <nav>
+                <ul>
+                <li><a href="{{ url_for('home') }}"> <h10>Home</h10>  </a></li>
+                </ul>
+               </nav>
+           </div> 
+        </div>     
+</header>
+
+<body>
+
+        
+  <div class="row">
+    <div class="wrapper">
+      
+        <form action="{{ url_for('login') }}" method="POST">
+          <h1>Login</h1>
+          {% if error %}
+          <div class="error-message">
+            <p>Email or password incorrect, try again</p>
+          </div>
+          {% endif %}
+          <div class="input-box">
+            <input type="email" name="email" placeholder="Email" required>
+            <i class='bx bxs-user'></i>
+          </div>
+          <div class="input-box">
+            <input type="password" name="password" placeholder="Password" required>
+            <i class='bx bxs-lock-alt' ></i>
+          </div>
+          <div class="remember-forgot">
+            <label><input type="checkbox">Remember Me</label>
+            <a href="#">Forgot Password</a>
+          </div>
+          <button type="submit" class="btn">Login</button>
+          {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div>
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+          <div class="register-link">
+            <p>Don't have an account? <a href="{{ url_for('signup') }}">Register</a></p>
+          </div>
+        </form>
+      </div>
+    </div>
+       
+
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@200;400&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background-image: url("{{ url_for('static', filename='images/GettyImages-185331541.webp') }}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Josefin Sans', sans-serif;
+            border-radius: 30px; /* Adjust the radius as needed */
+        }
+
+        @media only screen and (max-width: 768px){
+            • {width : 100%;}
+            •col-2 {width : 100%;}
+            •col-3 {width : 100%;}
+        }
+    </style>
+</head>
+
+<header>
+    <div class="row">
+    <div class="navigbar">
+        <div class="bristol-logo">
+            <img src="{{ url_for('static', filename='images/horizon-logo-finalV2.png') }}" alt="bristol" width="110" height="30">
+        </div>   
+        <div class="naviga">
+            <h10>Home </h10>
+        </div>   
+           <nav>     
+            <ul>
+            <li><a href="{{ url_for('about') }}"> <h10>About   </h10>  </a></li>
+            </ul>
+           </nav>
+       </div> 
+    </div>
+</header>
+
+
+
+</script>
+
+<body>
+  
+    <div class="tiny-contaner1">
+        <div class="row">
+           <div class="collumn-6">
+            <a href="{{ url_for('signup') }}">
+            <h6>SIGN IN</h6>
+            </a>
+           </div>
+           <div class="collumn-6">
+            <a href="{{ url_for('login') }}">
+            <h6>LOG IN</h6>  
+            </a>
+           </div>
+          </div>
+        </div>
+
+        <div class="row">
+        <div class="collumn-2">
+          <h1>Effortless bookings <br> Personalized journeys <br>Insightful management</h1> 
+          
+          <a href="{{ url_for('routes_ht') }}" class="btn"> See Destinations &#9755;</a>
+        </div>
+
+         <div class="image-slider">
+            <img src="{{ url_for('static', filename='images/how-to-buy-cheap-flight-tickets.avif') }}" alt="my pict">
+            <img src="{{ url_for('static', filename='images/preparing-for-airport-security-2972587-Final-5bce3a5746e0fb00268f7334.png') }}" alt="Image 2">
+            <img src="{{ url_for('static', filename='images/Airport+Advertising+Lightbox.jpeg') }}" alt="my pict">
+            <img src="{{ url_for('static', filename='images/trip-planning-turquoise-onboarding-mobile-app-page-screen-template-hotel-car-airport-walkthrough-website-steps-with-linear-illustrations-ux-ui-gui-smartphone-interface-concept-vector.jpg') }}" alt="Image 4">
+        </div>
+
+    </div>
+    
+
+ 
+  
+</body>
+</html>
+

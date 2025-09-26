@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="description" content="looking for a night out in Bristol">
+<meta name="keytwords" content="Bristol,night out, night clubs, musics, dance, relax,late night out, exitement, hanging out">
+<title>SignUp</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@200;400&display=swap" rel="stylesheet">
+
+
+<style>
+  body {
+      background-image: url("{{ url_for('static', filename='images/GettyImages-185331541.webp') }}");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      height: 100vh;
+      margin: 0;
+      font-family: 'Josefin Sans', sans-serif;
+      border-radius: 30px; /* Adjust the radius as needed */
+  }
+
+  @media only screen and (max-width: 768px){
+      • {width : 100%;}
+      •col-2 {width : 100%;}
+      •col-3 {width : 100%;}
+  }
+</style>
+
+
+</head>
+
+<header>
+    <div class="row">
+        <div class="navigbar">
+            <div class="bristol-logo">
+                <img src="{{ url_for('static', filename='images/horizon-logo-finalV2.png') }}" alt="bristol" width="110" height="30">
+            </div>   
+            <div class="naviga">
+                <h10> </h10>
+            </div>
+               <nav>
+                <ul>
+                <li><a href="{{ url_for('home') }}"> <h10>Home</h10>  </a></li>
+                </ul>
+               </nav>
+           </div> 
+        </div>     
+</header>
+
+<body>
+
+
+
+        <div class="row">
+            <div class="wrapper">
+                <form action="{{ url_for('signup') }}" method="POST">
+                  <h1>Register</h1>
+                  <div class="input-box">
+                    <input type="name"  name ="name" placeholder="Full Name " required>
+                    <i class='bx bxs-user'></i>
+                  </div>
+                  <div class="input-box">
+                    <input type="email" name="email" placeholder="Email" required>
+                    <i class='bx bxs-user'></i>
+                  </div>
+                  <div class="input-box">
+                    <input type="password" name="password" placeholder="Password" required>
+                    <i class='bx bxs-lock-alt' ></i>
+                  </div>
+                  <div class="input-box">
+                    <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+                    <i class='bx bxs-lock-alt'></i>
+                </div>
+                <div class="remember-forgot">
+                    <label><input type="checkbox">Remember Me</label>
+                    <a href="#">Forgot Password</a>
+                </div>
+                {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div>
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+                <button type="submit" class="btn">Register</button>
+                <div class="register-link">
+                    <p>Already have an account? <a href="{{ url_for('login') }}">Login</a></p>
+                </div>
+                
+                <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                        const form = document.querySelector('form');
+                        const password = document.querySelector('input[name="password"]');
+                        const confirmPassword = document.querySelector('input[name="confirm_password"]');
+                
+                        form.addEventListener('submit', function (e) {
+                            if (password.value !== confirmPassword.value) {
+                                e.preventDefault();
+                                alert('Passwords do not match. Please try again.');
+                            }
+                        });
+                    });
+                </script>
+                </form>
+              </div>
+            </div>
+
+</body>
+</html>
