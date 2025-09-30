@@ -16,8 +16,8 @@ app.secret_key = "your_secret_key"  # Needed for session management and flash me
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'  # Replace with your email provider's SMTP server
 app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USERNAME'] = 'abarry706@gmail.com'  # Replace with your email
-app.config['MAIL_PASSWORD'] = 'Barry200%'  # Replace with your email password
+app.config['MAIL_USERNAME'] = '*********@gmail.com'  # Replace with your email
+app.config['MAIL_PASSWORD'] = '*******%'  # Replace with your email password
 app.config['MAIL_DEFAULT_SENDER'] = 'abarry706@gmail.com'
 mail = Mail(app)
 
