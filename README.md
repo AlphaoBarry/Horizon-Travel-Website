@@ -5,7 +5,7 @@ Includes **user authentication, password hashing, discounts, and admin dashboard
 
 ---
 
-## Features 🚀
+## Features 
 - **User Authentication**  
   - Secure sign-up and login with password hashing (bcrypt).  
   - Session-based authentication with role-based access (customer vs admin).  
@@ -26,7 +26,7 @@ Includes **user authentication, password hashing, discounts, and admin dashboard
 
 ---
 
-## Tech Stack 🛠
+## Tech Stack 
 - **Backend**: Python, Flask  
 - **Frontend**: HTML, CSS (Jinja2 templates)  
 - **Database**: MySQL (via custom `DBfunc.py`)  
@@ -36,7 +36,7 @@ Includes **user authentication, password hashing, discounts, and admin dashboard
 
 ---
 
-## Installation ⚙️
+## Installation 
 1. Clone the repo:
    ```bash
    git clone https://github.com/AlphaoBarry/Horizon-Travel-Website.git
