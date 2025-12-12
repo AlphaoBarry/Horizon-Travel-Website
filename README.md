@@ -35,6 +35,8 @@ Includes **user authentication, password hashing, discounts, and admin dashboard
 - **Other Tools**: QRCode, Flask session management  
 
 ---
+Screenshots
+
 
 ## Installation 
 1. Clone the repo:
